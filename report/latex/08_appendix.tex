@@ -1,0 +1,135 @@
+\chapter{Appendix}\label{sec:appendix}
+
+This section includes the source code for the software developed for the project. This is also available at \href{https://github.com/allabright/abaqus-j-integral-sif}{https://github.com/allabright/abaqus-j-integral-sif}.
+
+\newpage
+\section{User Guide}
+
+This section provides the readme for the project, which contains a brief user guide on how to use the software to create and run a model, export the results, and calculate the J-integral and stress intensity factor.
+
+\lstinputlisting[language=iPython]{../../abaqus-j-integral/readme.md}
+
+\newpage
+\section{Configuration}
+
+\subsection{\texttt{config.ini}}
+
+This file provides the configuration options for the software, which can be adjusted in order to alter the parameters used for the analysis.
+
+\lstinputlisting[language=iPython]{../../abaqus-j-integral/config/config.ini}
+
+\newpage
+\section{Model Creation}
+
+\subsection{\texttt{create\_model.py}}
+
+This class provides the model-creation methods that are not specific to the edge-crack model, making it easier to develop further validation models.
+
+\lstinputlisting[language=iPython]{../../abaqus-j-integral/src/model/create_model.py}
+
+\newpage
+\subsection{\texttt{edge\_crack\_general.py}}
+
+This class provides the model-creation methods that are specific to the edge-crack model, but not specific to whether the model is 2D or 3D.
+
+\lstinputlisting[language=iPython]{../../abaqus-j-integral/src/model/edge_crack_general.py}
+
+\newpage
+\subsection{\texttt{edge\_crack\_2d.py}}
+
+This class provides the model-creation methods that are specific to the 2D edge-crack model.
+
+\lstinputlisting[language=iPython]{../../abaqus-j-integral/src/model/edge_crack_2d.py}
+
+\newpage
+\subsection{\texttt{edge\_crack\_3d.py}}
+
+This class provides the model-creation methods that are specific to the 3D edge-crack model.
+
+\lstinputlisting[language=iPython]{../../abaqus-j-integral/src/model/edge_crack_3d.py}
+
+\newpage
+\section{Results Export}
+
+\subsection{\texttt{export\_results.py}}
+
+This class provides the methods used to export the results from the Abaqus ODB to a JSON file, to be used for further analysis.
+
+\lstinputlisting[language=iPython]{../../abaqus-j-integral/src/export/export_results.py}
+
+\newpage
+\section{Results Analysis}
+
+\subsection{\texttt{analyse\_results.py}}
+
+General class to perform the analysis step -- calls the rest of the analysis classes in the correct order to perform the J-integral calculations.
+
+\lstinputlisting[language=iPython]{../../abaqus-j-integral/src/analysis/analyse_results.py}
+
+\newpage
+\subsection{\texttt{domain\_methods\_mixin.py}}
+
+This class provides the methods used to define the integration domain, and filter the elements and nodes to only capture those that fall within an integration domain, in order to increase performance.
+
+\lstinputlisting[language=iPython]{../../abaqus-j-integral/src/analysis/mixins/domain_methods_mixin.py}
+
+\newpage
+\subsection{\texttt{element\_methods\_mixin.py}}
+
+This class provides the methods used to operate on elements and integration points. It contains the bulk of the analysis performed.
+
+\lstinputlisting[language=iPython]{../../abaqus-j-integral/src/analysis/mixins/element_methods_mixin.py}
+
+
+\newpage
+\subsection{\texttt{node\_methods\_mixin.py}}
+
+This class provides the methods used to operate on the nodes.
+
+\lstinputlisting[language=iPython]{../../abaqus-j-integral/src/analysis/mixins/node_methods_mixin.py}
+
+\newpage
+\subsection{\texttt{shape\_function\_methods\_mixin.py}}
+
+This class provides the methods used to determine the shape functions and shape function derivatives for the elements.
+
+\lstinputlisting[language=iPython]{../../abaqus-j-integral/src/analysis/mixins/shape_function_methods_mixin.py}
+
+\newpage
+\subsection{\texttt{shared\_methods\_mixin.py}}
+
+This class provides general helper methods used to read the configuration, print results to the terminal, etc.
+
+\lstinputlisting[language=iPython]{../../abaqus-j-integral/src/analysis/mixins/shared_methods_mixin.py}
+
+\newpage
+\section{Run Management}
+
+\subsection{\texttt{runner.py}}
+
+General class to manage the run of the tool. Reads in the arguments, creates the directories to hold the results, and then calls the correct functions to perform the analysis.
+
+\lstinputlisting[language=iPython]{../../abaqus-j-integral/src/runner/runner.py}
+
+\newpage
+\subsection{\texttt{analyse.py}}
+
+Simple module to perform the analysis step. Called directly using \texttt{python analyse.py}.
+
+\lstinputlisting[language=iPython]{../../abaqus-j-integral/src/analyse.py}
+
+\newpage
+\subsection{\texttt{export.py}}
+
+Simple module to perform the export step. Called directly using \texttt{python export.py}.
+
+\lstinputlisting[language=iPython]{../../abaqus-j-integral/src/export.py}
+
+\newpage
+\subsection{\texttt{model.py}}
+
+Simple module to perform the modelling step. Called directly using \texttt{python model.py}.
+
+\lstinputlisting[language=iPython]{../../abaqus-j-integral/src/model.py}
+
+

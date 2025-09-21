@@ -1,0 +1,36 @@
+\chapter{Conclusion}\label{sec:conclusion}
+
+This final chapter provides a summary of the project, and assesses the outcomes of the project against its initial aims. Some limitations of the developed solution are discussed, and some points of further work are identified which could bring the software closer to a tool which can be used practically within industry.
+
+\newpage
+\section{Project Summary}
+
+The overall project was a success, and definitively met its key objectives defined in §\ref{sec:aims_objectives}.
+
+\begin{enumerate}
+	\item A literature review was undertaken, and a trade study was performed in order to select the most suitable method, software, and programming language to use for the implementation of the software.
+	\item The software was implemented successfully, and was able to obtain a domain-independent value for the J-integral using results from a tetrahedral-meshed finite element model, by applying the previously selected methods and tools.
+	\item The case study of an edge crack in a finite plate demonstrated that the J-integral and stress intensity factor produced by the software exhibited a very close agreement (on the order of 1-2\%) with results obtained via well-proven analytical methods.
+\end{enumerate}
+
+Therefore, this project can be confidently said to have met its overall aim, which was to develop a tool which could determine the stress intensity factor of a crack within a three-dimensional finite element model meshed using a tetrahedral mesh.
+
+However, some simplifications were made during the development of the tool, in order to control the scope and time-scale of the project. Firstly, the three-dimensional case study was simplified by retaining the unit thickness of $1\ mm$ used for the two-dimensional case study. This meant that a state of plane stress was maintained, and therefore that the contributions of through-thickness stresses and crack modes other than mode I were relatively insignificant. In reality, these factors could potentially alter the results significantly for a thicker structure, and therefore the applicability of the tool to such structures could be limited without further development and validation work.
+
+A further simplification was made regarding the crack tip geometry, along with the definition of the integration domains and the weight functions. Regarding the crack-tip geometry for the three-dimensional case study, the two-dimensional crack was extended in a third dimension, while maintaining a straight crack front. This was a good approximation, but disregards the potential for a crack tip to become curved within a thicker structure. Capturing this behaviour would necessitate modelling a curved crack front within the finite element model, along with a new coordinate system defined at separate points along the crack tip. Analysis of such a model not be possible to analyse using this software without further development. This also relates to the definition of the integration domains and the weight functions -- a curved crack would also require a curved annular domain, and a weight function which decayed in the through-thickness direction, as well as the crack growth direction.
+
+The final simplification made was the use of a case study which only considered pure mode I crack opening behaviour. In reality, thicker structures are more likely to exhibit mixed-mode behaviour, which increases the complexity of calculating the stress intensity factors, since the J-integral must be split into the contribution from each crack loading mode.
+
+However, the software was still able to capture many important attributes of three-dimensional analysis. A 3D solid model was analysed successfully, and results were obtained which agreed extremely well with the analytically-obtained results. The shape functions of the C3D10 tetrahedral elements were able to be successfully incorporated within the tool, and the three-dimensional annular domains were able to be defined successfully. The volumetric domain integral formulation was implemented correctly, and the domain-independence of the results was demonstrated. The software developed for this project can therefore act as a base, which can be extended in the future in order to incorporate more complex methods that more accurately model the real-world behaviour of cracks within three-dimensional structures.
+
+\section{Further Work}
+
+The key items of further work necessary to improve the functionality of the software are as follows:
+
+\begin{enumerate}
+	\item Analysis of curved crack fronts, where a new coordinate system is defined at points along the crack tip, and weight functions can be specified which decay in the z-direction as well as the x and y directions.
+	\item Analysis of mixed-mode loading configurations, whereby a total stress intensity factor can be calculated and decomposed into a separate stress intensity factor for each loading mode.
+	\item Performance of adaptive re-meshing as a crack propagates, and calculation of crack propagation lives using the Paris-Erdogan equation.
+	\item Validation via a further case study using a three-dimensional component under plane-strain assumptions, with the results being compared to results obtained via physical testing.
+	\item Implementation of modified tetrahedral elements at the crack tip -- for example, quarter point elements.
+\end{enumerate}
