@@ -97,8 +97,8 @@ class ElementMethodsMixin(SharedMethodsMixin):
 
                 if self.dimensions == "2d":
                     strain_arr_factored = np.array([
-                        [strain_arr[0][0]                , strain_arr[0][1]/2 / strain_factor],
-                        [strain_arr[1][0] / strain_factor, strain_arr[1][1]                  ]
+                        [strain_arr[0][0]                , strain_arr[0][1] / strain_factor],
+                        [strain_arr[1][0] / strain_factor, strain_arr[1][1]                ]
                     ])
                 elif self.dimensions == "3d":
                     strain_arr_factored = np.array([
